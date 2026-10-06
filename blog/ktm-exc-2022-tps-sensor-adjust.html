@@ -1,0 +1,31 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KTM EXC 2022 TPS Sensor Adjust</title><link rel="stylesheet" href="/style.css">
+<nav><a href="/">Home</a></nav>
+<h1>KTM EXC 2022 TPS Sensor Adjust</h1>
+
+<h2>The problem</h2>
+<p>My KTM EXC 300 2022 did not run well from hour 0. Above 50% throttle it lost power or twitched.</p>
+
+<h2>Modifications</h2>
+<p>From the start I installed two mods, based on experience with my older 2018 model: an idle screw and a TPS sensor cover.</p>
+<p>The idle screw adjusts idle better than the air bypass screw. I like how the bike feels at low revs with the air bypass screw almost all the way in. It also helps when a crankcase seal fails: idle goes off and you can compensate until the new seal arrives.</p>
+
+<h2>Refine the problem</h2>
+<p>More tests showed the problem was between 50% and 75% throttle. After 50% the bike felt restricted, lost power and ran with a spluttering sound.</p>
+
+<h2>Resolution try #1</h2>
+<p>First guess: a bad CCPS (pressure) sensor. I swapped them — zero result. An FMF Fatty pipe improved the whole range but kept the same 50–75% problem.</p>
+
+<h2>Final resolution</h2>
+<p>Last guess: TPS sensor position. The proper check is idle voltage: it should be 0.6 V. The TPS is a 5 V sensor, so at 0.6 V the ECU should read exactly 12% throttle.</p>
+<p>I connected ELM327 OBD-II with the Car Scanner app and saw about 16%. Way off.</p>
+<p>Loosening the bolts and rotating the sensor gave only ±1%. After removing the steel rings, the range became 12.5% to 18%.</p>
+<p>At 12.5% the bike ran amazing, as it should. To rule out placebo I set 18% — it ran even worse than before. Back to 12.5%, then the idle screw to read 12%.</p>
+<p>But I had to open the air bypass screw 6 turns to get 1550 idle RPM, which I did not like.</p>
+
+<h2>Later adjustments</h2>
+<p>I used a Dremel to enlarge the mounting holes for more TPS adjustment room. Now the air bypass screw is only 0.75 turn out.</p>
+
+<h2>Final thoughts</h2>
+<p>With the stock ECU the TPS should read 12% at idle. Mine read 15.5%, which led to wrong ECU map values in the mid range.</p>
+</html>
