@@ -1,4 +1,50 @@
-:root{color-scheme:light dark;--fg:#1a1a1a;--bg:#fff;--mute:#666;--link:#0b5fff}
-@media (prefers-color-scheme:dark){:root{--fg:#e6e6e6;--bg:#141414;--mute:#999;--link:#7aa7ff}}
-body{max-width:720px;margin:0 auto;padding:24px 16px;font:17px/1.6 system-ui,sans-serif;color:var(--fg);background:var(--bg)}
-a{color:var(--link)}nav a{margin-right:16px}small,.mute{color:var(--mute)}h1{margin-bottom:0}
+:root {
+  color-scheme: light dark;
+  --bg: #f8f7f4;
+  --fg: #252521;
+  --mute: #696962;
+  --line: #d8d8d0;
+  --accent: #a84428;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #191a18;
+    --fg: #eeeee7;
+    --mute: #a5a59b;
+    --line: #3d3e37;
+    --accent: #e59877;
+  }
+}
+* { box-sizing: border-box; }
+html { background: var(--bg); }
+body {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: clamp(32px, 7vw, 96px) 24px 80px;
+  background: var(--bg);
+  color: var(--fg);
+  font: 17px/1.75 system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-underline-offset: .25em; text-decoration-thickness: 1px; }
+a:hover { color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
+h1, h2 { line-height: 1.15; }
+h1 { margin: 0 0 32px; font-size: clamp(36px, 5vw, 54px); font-weight: 600; letter-spacing: -.045em; text-wrap: balance; }
+h2 { margin: 48px 0 16px; font-size: 23px; font-weight: 600; letter-spacing: -.025em; }
+p { margin: 0 0 20px; }
+nav { margin-bottom: 48px; font-size: 14px; color: var(--mute); }
+article { max-width: 65ch; }
+.home header { padding: 16px 0 80px; }
+.home h1 { margin-bottom: 24px; font-size: clamp(64px, 10vw, 104px); letter-spacing: -.065em; }
+.home h1 span { color: var(--accent); }
+.contacts { display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 15px; color: var(--mute); }
+.home h2 { margin: 0 0 24px; color: var(--mute); font-size: 12px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; }
+.posts { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+.posts li { border-bottom: 1px solid var(--line); }
+.posts a { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; padding: 24px 0; font-size: 20px; line-height: 1.45; letter-spacing: -.02em; text-decoration: none; }
+.posts a span { color: var(--mute); }
+@media (max-width: 480px) {
+  .home header { padding-bottom: 64px; }
+  .posts a { font-size: 18px; }
+}
