@@ -11,6 +11,15 @@
     <nav><a href="/">← Home</a></nav>
     <h1>Donate<span aria-hidden="true">.</span></h1>
     <p>If you find my work useful, you can support it here. Thank you.</p>
+    <section class="donation" aria-labelledby="tron-heading">
+      <h2 id="tron-heading">USDT · Tron (TRC20)</h2>
+      <p class="donation-networks">Tron (TRC20)</p>
+      <p>Send only on Tron (TRC20).</p>
+      <img class="donation-qr" src="/donate-tron-qr.png" width="246" height="246" alt="QR code for the Tron wallet address below">
+      <p class="wallet-address">TL3Jom82eDp4yJewcuWN4njWvSFW7VBP7M</p>
+      <button type="button">Copy address</button>
+      <p class="copy-status" role="status"></p>
+    </section>
     <section class="donation" aria-labelledby="crypto-heading">
       <h2 id="crypto-heading">USDT / BNB / ETH</h2>
       <p class="donation-networks">BNB Smart Chain, Ethereum, Base</p>
@@ -22,15 +31,17 @@
     </section>
   </main>
   <script>
-    document.getElementById('copy-address').addEventListener('click', async () => {
-      const address = document.getElementById('wallet-address').textContent;
-      const status = document.getElementById('copy-status');
-      try {
-        await navigator.clipboard.writeText(address);
-        status.textContent = 'Address copied.';
-      } catch {
-        status.textContent = 'Could not copy. Select and copy the address above.';
-      }
+    document.querySelectorAll('.donation').forEach(section => {
+      section.querySelector('button').addEventListener('click', async () => {
+        const address = section.querySelector('.wallet-address').textContent;
+        const status = section.querySelector('.copy-status');
+        try {
+          await navigator.clipboard.writeText(address);
+          status.textContent = 'Address copied.';
+        } catch {
+          status.textContent = 'Could not copy. Select and copy the address above.';
+        }
+      });
     });
   </script>
 </body>

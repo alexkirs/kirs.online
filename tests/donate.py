@@ -9,28 +9,38 @@ assert re.findall(r'0x[0-9a-fA-F]{40}', html) == [address]
 assert 'href="/donate"' in Path('index.html').read_text()
 assert 'BNB Smart Chain, Ethereum, Base' in html
 assert 'Send only on the listed networks.' in html
+tron = 'TL3Jom82eDp4yJewcuWN4njWvSFW7VBP7M'
+assert html.count(tron) == 1
+assert html.index(tron) < html.index(address)
+assert 'USDT · Tron (TRC20)' in html
+assert 'Send only on Tron (TRC20).' in html
+assert 'src="/donate-tron-qr.png"' in html
 script = re.search(r'<script>(.*?)</script>', html, re.S)[1]
 subprocess.run(['node', '-e', '''
 const assert = require('node:assert/strict');
-let click;
-const status = {textContent: ''};
-global.document = {getElementById: id => ({
-  'copy-address': {addEventListener: (_, fn) => click = fn},
-  'wallet-address': {textContent: ADDRESS}, 'copy-status': status
-})[id]};
-Object.defineProperty(global, 'navigator', {value: {clipboard: {
-  writeText: async value => assert.equal(value, ADDRESS)
-}}, configurable: true});
+const sections = [TRON, ADDRESS].map(address => {
+  const section = {address, status: {textContent: ''}};
+  section.querySelector = selector => ({
+    'button': {addEventListener: (_, fn) => section.click = fn},
+    '.wallet-address': {textContent: address}, '.copy-status': section.status
+  })[selector];
+  return section;
+});
+global.document = {querySelectorAll: () => sections};
+Object.defineProperty(global, 'navigator', {value: {}, configurable: true});
 SCRIPT
 (async () => {
-  await click();
-  assert.equal(status.textContent, 'Address copied.');
-  navigator.clipboard.writeText = async () => {throw Error('denied')};
-  await click();
-  assert.equal(status.textContent, 'Could not copy. Select and copy the address above.');
-  delete navigator.clipboard;
-  await click();
-  assert.equal(status.textContent, 'Could not copy. Select and copy the address above.');
+  for (const {click, status, address} of sections) {
+    navigator.clipboard = {writeText: async value => assert.equal(value, address)};
+    await click();
+    assert.equal(status.textContent, 'Address copied.');
+    navigator.clipboard.writeText = async () => {throw Error('denied')};
+    await click();
+    assert.equal(status.textContent, 'Could not copy. Select and copy the address above.');
+    delete navigator.clipboard;
+    await click();
+    assert.equal(status.textContent, 'Could not copy. Select and copy the address above.');
+  }
 })().catch(error => {console.error(error); process.exitCode = 1});
-'''.replace('ADDRESS', repr(address)).replace('SCRIPT', script)], check=True)
+'''.replace('ADDRESS', repr(address)).replace('TRON', repr(tron)).replace('SCRIPT', script)], check=True)
 print('Donation values and clipboard success/failure: OK')
