@@ -1,1 +1,3 @@
 /taskq.local.toml
+/.local/
+/.claude/settings.local.json
