@@ -11,6 +11,12 @@
     <nav><a href="/">← Home</a></nav>
     <h1>Donate<span aria-hidden="true">.</span></h1>
     <p>If you find my work useful, you can support it here. Thank you.</p>
+    <section class="donation" aria-labelledby="tribute-heading">
+      <h2 id="tribute-heading">Card (any country) · Tribute</h2>
+      <p>Pay by card from any country, including Russia.</p>
+      <p><a class="donation-button" href="https://web.tribute.tg/d/RJ1">Pay by card</a></p>
+      <p class="donation-networks"><a href="https://t.me/tribute/app?startapp=dRJ1">open in Telegram</a></p>
+    </section>
     <section class="donation" aria-labelledby="tron-heading">
       <h2 id="tron-heading">USDT · Tron (TRC20)</h2>
       <p class="donation-networks">Tron (TRC20)</p>
@@ -31,7 +37,7 @@
     </section>
   </main>
   <script>
-    document.querySelectorAll('.donation').forEach(section => {
+    document.querySelectorAll('.donation:has(.wallet-address)').forEach(section => {
       section.querySelector('button').addEventListener('click', async () => {
         const address = section.querySelector('.wallet-address').textContent;
         const status = section.querySelector('.copy-status');

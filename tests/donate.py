@@ -4,6 +4,10 @@ import re
 import subprocess
 
 html = Path('donate.html').read_text()
+assert 'href="https://web.tribute.tg/d/RJ1"' in html
+assert 'href="https://t.me/tribute/app?startapp=dRJ1"' in html
+assert 'Card (any country) · Tribute' in html
+assert html.index('id="tribute-heading"') < html.index('id="tron-heading"')
 address = '0xF68639DA4C0a0670ee3712F0ae46b2C03C59aDCc'
 assert re.findall(r'0x[0-9a-fA-F]{40}', html) == [address]
 assert 'href="/donate"' in Path('index.html').read_text()
@@ -26,7 +30,10 @@ const sections = [TRON, ADDRESS].map(address => {
   })[selector];
   return section;
 });
-global.document = {querySelectorAll: () => sections};
+global.document = {querySelectorAll: selector => {
+  assert.equal(selector, '.donation:has(.wallet-address)');
+  return sections;
+}};
 Object.defineProperty(global, 'navigator', {value: {}, configurable: true});
 SCRIPT
 (async () => {

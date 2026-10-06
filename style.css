@@ -62,7 +62,9 @@ img {
 .donation-networks, .copy-status { color: var(--mute); font-size: 15px; }
 .donation-qr { width: 246px; border-radius: 0; }
 .wallet-address { overflow-wrap: anywhere; font: 15px/1.75 ui-monospace, monospace; user-select: all; }
-button {
+button, .donation-button {
+  display: inline-block;
+  text-decoration: none;
   padding: 10px 16px;
   border: 1px solid var(--line);
   border-radius: 2px;
@@ -71,6 +73,6 @@ button {
   font: inherit;
   cursor: pointer;
 }
-button:hover { border-color: var(--accent); }
-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+button:hover, .donation-button:hover { border-color: var(--accent); }
+button:focus-visible, .donation-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .copy-status { min-height: 1.75em; margin-top: 12px; }
