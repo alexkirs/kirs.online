@@ -15,6 +15,13 @@
       <a id="tribute-heading" class="donation-button" href="https://web.tribute.tg/d/RJ1">Pay by card · Tribute</a>
       <p class="donation-networks"><a href="https://t.me/tribute/app?startapp=dRJ1">Telegram</a></p>
     </section>
+    <section class="donation" aria-labelledby="binance-heading" style="margin-bottom: 24px">
+      <h2 id="binance-heading">Binance · Pay / transfer to Binance ID</h2>
+      <p>In Binance app, Pay &gt; Send, enter this ID, zero fee.</p>
+      <p class="wallet-address">18813173</p>
+      <button type="button">Copy ID</button>
+      <p class="copy-status" role="status"></p>
+    </section>
     <div class="donation-grid">
       <section class="donation" aria-labelledby="tron-heading">
         <h2 id="tron-heading">USDT · Tron (TRC20)</h2>
@@ -49,9 +56,9 @@
         const status = section.querySelector('.copy-status');
         try {
           await navigator.clipboard.writeText(address);
-          status.textContent = 'Address copied.';
+          status.textContent = 'Copied.';
         } catch {
-          status.textContent = 'Could not copy. Select and copy the address above.';
+          status.textContent = 'Could not copy. Select and copy the value above.';
         }
       });
     });

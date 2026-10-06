@@ -10,7 +10,12 @@ assert re.findall(r'href="([^"]+)"', html) == ['/style.css', '/', 'https://web.t
 assert 'Pay by card · Tribute' in html
 assert '<details>' not in html
 assert html.count('class="donation-qr"') == 3
-assert html.index('id="tribute-heading"') < html.index('id="tron-heading"')
+assert html.index('id="tribute-heading"') < html.index('id="binance-heading"') < html.index('id="tron-heading"')
+binance = '18813173'
+assert html.count(binance) == 1
+assert 'Binance · Pay / transfer to Binance ID' in html
+assert 'In Binance app, Pay &gt; Send, enter this ID, zero fee.' in html
+assert '<button type="button">Copy ID</button>' in html
 address = '0xF68639DA4C0a0670ee3712F0ae46b2C03C59aDCc'
 assert re.findall(r'0x[0-9a-fA-F]{40}', html) == [address]
 assert 'href="/donate"' in Path('index.html').read_text()
@@ -30,7 +35,7 @@ assert 'src="/donate-tron-qr.png"' in html
 script = re.search(r'<script>(.*?)</script>', html, re.S)[1]
 subprocess.run(['node', '-e', '''
 const assert = require('node:assert/strict');
-const sections = [TRON, TON, ADDRESS].map(address => {
+const sections = [BINANCE, TRON, TON, ADDRESS].map(address => {
   const section = {address, status: {textContent: ''}};
   section.querySelector = selector => ({
     'button': {addEventListener: (_, fn) => section.click = fn},
@@ -48,14 +53,14 @@ SCRIPT
   for (const {click, status, address} of sections) {
     navigator.clipboard = {writeText: async value => assert.equal(value, address)};
     await click();
-    assert.equal(status.textContent, 'Address copied.');
+    assert.equal(status.textContent, 'Copied.');
     navigator.clipboard.writeText = async () => {throw Error('denied')};
     await click();
-    assert.equal(status.textContent, 'Could not copy. Select and copy the address above.');
+    assert.equal(status.textContent, 'Could not copy. Select and copy the value above.');
     delete navigator.clipboard;
     await click();
-    assert.equal(status.textContent, 'Could not copy. Select and copy the address above.');
+    assert.equal(status.textContent, 'Could not copy. Select and copy the value above.');
   }
 })().catch(error => {console.error(error); process.exitCode = 1});
-'''.replace('ADDRESS', repr(address)).replace('TRON', repr(tron)).replace('TON', repr(ton)).replace('SCRIPT', script)], check=True)
+'''.replace('BINANCE', repr(binance)).replace('ADDRESS', repr(address)).replace('TRON', repr(tron)).replace('TON', repr(ton)).replace('SCRIPT', script)], check=True)
 print('Donation values and clipboard success/failure: OK')
