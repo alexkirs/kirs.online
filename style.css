@@ -78,11 +78,9 @@ img {
 .donation-quick { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-bottom: 24px; }
 .donation-grid, .donation-quick { gap: 16px 24px; }
 .donation-grid .donation, .donation-quick .donation { grid-template-rows: subgrid; }
-.donation-grid .donation { grid-row: span 5; }
+.donation-grid .donation { grid-row: span 3; }
 .donation-quick .donation { grid-row: span 4; }
-.donation-controls { display: grid; align-content: start; gap: 8px; }
-.donation-action { display: flex; align-items: center; gap: 16px; }
-.donation-action button { flex: 1; }
+.donation-action { display: grid; grid-template-columns: minmax(0, 1fr) 44px; align-items: center; gap: 4px; }
 .tribute .donation-button { width: 100%; }
 .donation-icon { width: 24px; height: 24px; flex-shrink: 0; vertical-align: -.2em; margin-right: 8px; }
 .tribute .donation-networks { text-align: center; }
@@ -96,11 +94,20 @@ button, .donation-button {
 button:hover { opacity: .85; color: var(--bg); }
 .donation-button:hover { background: #91391f; color: #fff; }
 button:focus-visible, .donation-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
-.donation button { width: 100%; }
+.donation .copy-button {
+  width: 44px; height: 44px; min-height: 44px;
+  padding: 12px; background: transparent; color: var(--mute);
+}
+.copy-button:hover { background: var(--bg); color: var(--fg); opacity: 1; }
+.copy-button svg { width: 20px; height: 20px; }
+.check-glyph, .copied .copy-glyph { display: none; }
+.copied .check-glyph { display: inline; }
+.donation-action .copy-status { grid-column: 1 / -1; }
+.donation-grid .donation-qr { grid-row: 3; }
 .wallet-address { overflow-wrap: anywhere; word-break: break-all; font: 13px/1.7 ui-monospace, monospace; user-select: all; }
 .donation .copy-status { font-size: 14px; }
 .copy-status:empty { display: none; }
-.donation-qr { width: 100%; max-width: 246px; margin: 0 auto; padding: 8px; border-radius: 16px; background: white; }
+.donation-qr { color-scheme: light; width: 100%; max-width: 246px; margin: 0 auto; padding: 8px; border-radius: 16px; background: white; }
 @media (max-width: 800px) {
   .donation-grid, .donation-quick { grid-template-columns: 1fr; gap: 24px; }
   .donation-grid .donation, .donation-quick .donation { grid-row: auto; grid-template-rows: none; }
