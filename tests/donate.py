@@ -18,7 +18,7 @@ assert 'href="https://t.me/tribute/app?startapp=dRJ1"' in html
 assert re.findall(r'href="([^"]+)"', html) == [f'/style.css?v={css_version}', '/', 'https://web.tribute.tg/d/RJ1', 'https://t.me/tribute/app?startapp=dRJ1']
 assert 'Pay by card · Tribute' in html
 assert '<h2 id="tribute-heading">' in html
-assert 'Card · any country</h2>' in html
+assert 'Card</h2>' in html
 assert '<p>Visa, Mastercard, Mir via Tribute</p>' in html
 assert '<details>' not in html
 assert html.count('class="donation-icon"') == 6
@@ -32,23 +32,24 @@ assert html.count('class="donation-qr"') == 3
 assert html.index('id="tribute-heading"') < html.index('id="binance-heading"') < html.index('id="tron-heading"')
 binance = '18813173'
 assert html.count(binance) == 1
-assert 'Binance · send to Binance ID' in html
+assert 'Binance ID</h2>' in html
 assert 'bybit' not in html.lower()
 assert 'In Binance app: Pay &gt; Send, enter this ID, zero fee' in html
 assert 'aria-label="Copy Binance ID"' in html
 address = '0xF68639DA4C0a0670ee3712F0ae46b2C03C59aDCc'
 assert re.findall(r'0x[0-9a-fA-F]{40}', html) == [address]
 assert 'href="/donate"' in Path('index.html').read_text()
-assert 'USDT / BNB / ETH · BNB Chain, Ethereum, Base</h2>' in html
+assert 'USDT · EVM</h2>' in html
+assert '<p>BNB Chain, Ethereum, Base</p>' in html
 assert 'Send only' not in html
 tron = 'TL3Jom82eDp4yJewcuWN4njWvSFW7VBP7M'
 assert html.count(tron) == 1
 ton = 'UQCoCOniO8A7STZAnFp4WK463i05NxNTrc3ulmtvtkeUKNiM'
 assert html.count(ton) == 1
 assert html.index(tron) < html.index(ton) < html.index(address)
-assert 'TON / USDT · TON network' in html
+assert 'TON</h2>' in html
 assert 'src="/donate-ton-qr.png"' in html
-assert 'USDT · Tron (TRC20)' in html
+assert 'USDT · TRC20</h2>' in html
 assert 'src="/donate-tron-qr.png"' in html
 script = re.search(r'<script>(.*?)</script>', html, re.S)[1]
 subprocess.run(['node', '-e', '''
