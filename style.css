@@ -48,3 +48,11 @@ article { max-width: 65ch; }
   .home header { padding-bottom: 64px; }
   .posts a { font-size: 18px; }
 }
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 24px 0;
+  border-radius: 2px;
+}
