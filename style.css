@@ -56,3 +56,21 @@ img {
   margin: 24px 0;
   border-radius: 2px;
 }
+
+.donation { margin-top: 48px; border-top: 1px solid var(--line); }
+.donation h2 { margin-top: 32px; }
+.donation-networks, .copy-status { color: var(--mute); font-size: 15px; }
+.donation-qr { width: 246px; border-radius: 0; }
+.wallet-address { overflow-wrap: anywhere; font: 15px/1.75 ui-monospace, monospace; user-select: all; }
+button {
+  padding: 10px 16px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--bg);
+  color: var(--fg);
+  font: inherit;
+  cursor: pointer;
+}
+button:hover { border-color: var(--accent); }
+button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.copy-status { min-height: 1.75em; margin-top: 12px; }
