@@ -1,16 +1,26 @@
 """Run from the repository root: python3 tests/donate.py (requires Node.js)."""
 from pathlib import Path
 import re
+import hashlib
 import subprocess
 
+css_version = hashlib.sha256(Path('style.css').read_bytes()).hexdigest()[:12]
+for page in Path('.').rglob('*.html'):
+    content = page.read_text()
+    assert f'href="/style.css?v={css_version}"' in content, page
+    for svg in re.findall(r'<svg\b[^>]*>', content):
+        assert 'width="24"' in svg and 'height="24"' in svg, page
 html = Path('donate.html').read_text()
 assert 'href="https://web.tribute.tg/d/RJ1"' in html
 assert 'href="https://t.me/tribute/app?startapp=dRJ1"' in html
-assert re.findall(r'href="([^"]+)"', html) == ['/style.css', '/', 'https://web.tribute.tg/d/RJ1', 'https://t.me/tribute/app?startapp=dRJ1']
+assert re.findall(r'href="([^"]+)"', html) == [f'/style.css?v={css_version}', '/', 'https://web.tribute.tg/d/RJ1', 'https://t.me/tribute/app?startapp=dRJ1']
 assert 'Pay by card · Tribute' in html
+assert '<h2 id="tribute-heading">' in html
+assert 'Card · any country</h2>' in html
+assert '<p>Visa, Mastercard, Mir via Tribute</p>' in html
 assert '<details>' not in html
-assert html.count('class="donation-icon"') == 5
-assert html.count('aria-hidden="true"') == 5
+assert html.count('class="donation-icon"') == 6
+assert html.count('aria-hidden="true"') == 6
 assert 'class="donation-quick"' in html
 assert html.count('class="donation-qr"') == 3
 assert html.index('id="tribute-heading"') < html.index('id="binance-heading"') < html.index('id="tron-heading"')

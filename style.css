@@ -74,18 +74,21 @@ img {
 .donation p:not(.wallet-address):not(.copy-status) { color: var(--mute); font-size: 14px; }
 .donation-grid .donation > p:not(.wallet-address):not(.copy-status) { min-height: 72px; }
 .donation-quick { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-bottom: 24px; }
-.tribute { display: flex; flex-direction: column; justify-content: center; gap: 16px; }
+.donation-quick .donation { display: flex; flex-direction: column; }
+.donation-quick button, .tribute .donation-button { margin-top: auto; }
+.donation-quick .donation .copy-status, .tribute .donation-networks { min-height: 44px; margin: 12px 0 0; }
 .tribute .donation-button { width: 100%; }
 .donation-icon { width: 24px; height: 24px; flex-shrink: 0; vertical-align: -.2em; margin-right: 8px; }
-.tribute .donation-networks { min-height: 0; margin: 0; text-align: center; }
+.tribute .donation-networks { text-align: center; }
 button, .donation-button {
   display: inline-flex; align-items: center; justify-content: center;
   min-height: 48px; padding: 12px 20px; border: 0; border-radius: 12px;
   background: var(--fg); color: var(--bg); font: 600 15px/1.5 system-ui, sans-serif;
   text-decoration: none; cursor: pointer;
 }
-.donation-button { background: var(--accent); color: light-dark(#fff, #191a18); }
-button:hover, .donation-button:hover { opacity: .85; color: var(--bg); }
+.donation-button { background: #a84428; color: #fff; }
+button:hover { opacity: .85; color: var(--bg); }
+.donation-button:hover { background: #91391f; color: #fff; }
 button:focus-visible, .donation-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .donation button { width: 100%; }
 .wallet-address { min-height: 72px; overflow-wrap: anywhere; font: 13px/1.7 ui-monospace, monospace; user-select: all; }
@@ -95,6 +98,6 @@ button:focus-visible, .donation-button:focus-visible { outline: 2px solid var(--
   .donation-grid, .donation-quick { grid-template-columns: 1fr; gap: 24px; }
   .donation { padding: 28px; }
   .donation h2, .wallet-address, .donation-grid .donation > p:not(.wallet-address):not(.copy-status) { min-height: 0; }
-  .tribute { padding: 24px; flex-direction: column; gap: 8px; align-items: stretch; }
+  .tribute { padding: 24px; }
   .tribute .donation-networks { text-align: center; }
 }
