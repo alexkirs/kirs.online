@@ -76,3 +76,18 @@ button, .donation-button {
 button:hover, .donation-button:hover { border-color: var(--accent); }
 button:focus-visible, .donation-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .copy-status { min-height: 1.75em; margin-top: 12px; }
+
+.donate nav { margin-bottom: 24px; }
+.donate nav a, .donate .donation-networks a { display: inline-flex; align-items: center; min-height: 44px; }
+.donate h1 { margin-bottom: 24px; }
+.donate .donation { margin-top: 24px; padding-top: 24px; }
+.donate .donation:first-of-type { margin-top: 0; padding-top: 0; border: 0; }
+.donate .donation h2 { margin: 0 0 8px; font-size: 20px; }
+.donate .donation p { margin-bottom: 8px; }
+.donate .donation-button { display: block; padding: 14px 16px; background: var(--fg); color: var(--bg); text-align: center; font-weight: 600; }
+.donate .donation-networks { margin-bottom: 0; }
+.donate button, .donate summary { min-height: 44px; }
+.donate summary { display: flex; align-items: center; width: fit-content; cursor: pointer; text-decoration: underline; text-underline-offset: .25em; }
+.donate summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.donate .copy-status { margin: 8px 0 0; color: var(--fg); }
+.donate .donation-qr { margin: 8px 0 0; }

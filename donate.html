@@ -6,43 +6,38 @@
   <title>Donate - Alex Kirs</title>
   <link rel="stylesheet" href="/style.css">
 </head>
-<body>
+<body class="donate">
   <main>
     <nav><a href="/">← Home</a></nav>
-    <h1>Donate<span aria-hidden="true">.</span></h1>
-    <p>If you find my work useful, you can support it here. Thank you.</p>
-    <section class="donation" aria-labelledby="tribute-heading">
-      <h2 id="tribute-heading">Card (any country) · Tribute</h2>
-      <p>Pay by card from any country, including Russia.</p>
-      <p><a class="donation-button" href="https://web.tribute.tg/d/RJ1">Pay by card</a></p>
-      <p class="donation-networks"><a href="https://t.me/tribute/app?startapp=dRJ1">open in Telegram</a></p>
+    <h1>Donate</h1>
+    <section class="donation" aria-label="Card donations">
+      <a id="tribute-heading" class="donation-button" href="https://web.tribute.tg/d/RJ1">Pay by card · Tribute</a>
+      <p class="donation-networks"><a href="https://t.me/tribute/app?startapp=dRJ1">Telegram</a></p>
     </section>
     <section class="donation" aria-labelledby="tron-heading">
       <h2 id="tron-heading">USDT · Tron (TRC20)</h2>
-      <p class="donation-networks">Tron (TRC20)</p>
       <p>Send only on Tron (TRC20).</p>
-      <img class="donation-qr" src="/donate-tron-qr.png" width="246" height="246" alt="QR code for the Tron wallet address below">
       <p class="wallet-address">TL3Jom82eDp4yJewcuWN4njWvSFW7VBP7M</p>
       <button type="button">Copy address</button>
       <p class="copy-status" role="status"></p>
+      <details><summary>QR code</summary><img class="donation-qr" src="/donate-tron-qr.png" width="246" height="246" alt="QR code for the Tron wallet address above"></details>
     </section>
     <section class="donation" aria-labelledby="ton-heading">
       <h2 id="ton-heading">TON / USDT · TON network</h2>
-      <p class="donation-networks">Works from the Telegram Wallet.</p>
       <p>Send only on TON network.</p>
-      <img class="donation-qr" src="/donate-ton-qr.png" width="246" height="246" alt="QR code for the TON wallet address below">
       <p class="wallet-address">UQCoCOniO8A7STZAnFp4WK463i05NxNTrc3ulmtvtkeUKNiM</p>
       <button type="button">Copy address</button>
       <p class="copy-status" role="status"></p>
+      <details><summary>QR code</summary><img class="donation-qr" src="/donate-ton-qr.png" width="246" height="246" alt="QR code for the TON wallet address above"></details>
     </section>
     <section class="donation" aria-labelledby="crypto-heading">
       <h2 id="crypto-heading">USDT / BNB / ETH</h2>
       <p class="donation-networks">BNB Smart Chain, Ethereum, Base</p>
       <p>Send only on the listed networks.</p>
-      <img class="donation-qr" src="/donate-qr.png" width="246" height="246" alt="QR code for the wallet address below">
       <p class="wallet-address" id="wallet-address">0xF68639DA4C0a0670ee3712F0ae46b2C03C59aDCc</p>
       <button type="button" id="copy-address">Copy address</button>
       <p class="copy-status" id="copy-status" role="status"></p>
+      <details><summary>QR code</summary><img class="donation-qr" src="/donate-qr.png" width="246" height="246" alt="QR code for the wallet address above"></details>
     </section>
   </main>
   <script>
