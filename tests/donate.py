@@ -9,6 +9,9 @@ assert 'href="https://t.me/tribute/app?startapp=dRJ1"' in html
 assert re.findall(r'href="([^"]+)"', html) == ['/style.css', '/', 'https://web.tribute.tg/d/RJ1', 'https://t.me/tribute/app?startapp=dRJ1']
 assert 'Pay by card · Tribute' in html
 assert '<details>' not in html
+assert html.count('class="donation-icon"') == 5
+assert html.count('aria-hidden="true"') == 5
+assert 'class="donation-quick"' in html
 assert html.count('class="donation-qr"') == 3
 assert html.index('id="tribute-heading"') < html.index('id="binance-heading"') < html.index('id="tron-heading"')
 binance = '18813173'

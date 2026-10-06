@@ -73,8 +73,11 @@ img {
 .donation p { margin-bottom: 16px; }
 .donation p:not(.wallet-address):not(.copy-status) { color: var(--mute); font-size: 14px; }
 .donation-grid .donation > p:not(.wallet-address):not(.copy-status) { min-height: 72px; }
-.tribute { display: flex; align-items: center; gap: 24px; margin-bottom: 40px; padding: 24px; }
-.tribute .donation-networks { min-height: 0; margin: 0; }
+.donation-quick { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-bottom: 24px; }
+.tribute { display: flex; flex-direction: column; justify-content: center; gap: 16px; }
+.tribute .donation-button { width: 100%; }
+.donation-icon { width: 24px; height: 24px; flex-shrink: 0; vertical-align: -.2em; margin-right: 8px; }
+.tribute .donation-networks { min-height: 0; margin: 0; text-align: center; }
 button, .donation-button {
   display: inline-flex; align-items: center; justify-content: center;
   min-height: 48px; padding: 12px 20px; border: 0; border-radius: 12px;
@@ -89,7 +92,7 @@ button:focus-visible, .donation-button:focus-visible { outline: 2px solid var(--
 .donation .copy-status { min-height: 24px; margin: 12px 0 0; font-size: 14px; }
 .donation-qr { width: 100%; max-width: 246px; margin: 24px auto 0; padding: 12px; border-radius: 16px; background: white; }
 @media (max-width: 800px) {
-  .donation-grid { grid-template-columns: 1fr; gap: 24px; }
+  .donation-grid, .donation-quick { grid-template-columns: 1fr; gap: 24px; }
   .donation { padding: 28px; }
   .donation h2, .wallet-address, .donation-grid .donation > p:not(.wallet-address):not(.copy-status) { min-height: 0; }
   .tribute { padding: 24px; flex-direction: column; gap: 8px; align-items: stretch; }
