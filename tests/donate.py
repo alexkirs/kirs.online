@@ -8,7 +8,8 @@ assert 'href="https://web.tribute.tg/d/RJ1"' in html
 assert 'href="https://t.me/tribute/app?startapp=dRJ1"' in html
 assert re.findall(r'href="([^"]+)"', html) == ['/style.css', '/', 'https://web.tribute.tg/d/RJ1', 'https://t.me/tribute/app?startapp=dRJ1']
 assert 'Pay by card · Tribute' in html
-assert html.count('<details><summary>QR code</summary>') == 3
+assert '<details>' not in html
+assert html.count('class="donation-qr"') == 3
 assert html.index('id="tribute-heading"') < html.index('id="tron-heading"')
 address = '0xF68639DA4C0a0670ee3712F0ae46b2C03C59aDCc'
 assert re.findall(r'0x[0-9a-fA-F]{40}', html) == [address]
